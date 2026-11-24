@@ -1,0 +1,1691 @@
+Setup
+ <ItemGroup>
+   <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.5" />
+   <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.5" />
+   <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.5">
+     <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+     <PrivateAssets>all</PrivateAssets>
+   </PackageReference>
+   <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+   <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+ </ItemGroup>
+
+
+
+
+
+
+1 Update DbContext 
+ ================================================================
+ public static string GetConnectionString(string connectionStringName)
+ {
+     var config = new ConfigurationBuilder()
+         .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+         .AddJsonFile("appsettings.json")
+         .Build();
+
+     string connectionString = config.GetConnectionString(connectionStringName);
+     return connectionString;
+ }
+
+ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+     => optionsBuilder.UseSqlServer(GetConnectionString("DefaultConnection")).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+
+======================================================================
+
+
+2 thêm GenericRepository
+======================================================================
+    public class GenericRepository<T> where T : class
+    {
+        protected điềnlớpcontex _context;
+
+        public GenericRepository()
+        {
+            _context ??= new điềnlớpcontex();
+        }
+
+        public GenericRepository(điềnlớpcontex context)
+        {
+            _context = context;
+        }
+
+        public List<T> GetAll()
+        {
+            return _context.Set<T>().ToList();
+        }
+        public async Task<List<T>> GetAllAsync()
+        {
+            return await _context.Set<T>().ToListAsync();
+        }
+        public void Create(T entity)
+        {
+            _context.Add(entity);
+            _context.SaveChanges();
+        }
+
+        public async Task<int> CreateAsync(T entity)
+        {
+            _context.Add(entity);
+            return await _context.SaveChangesAsync();
+        }
+        public void Update(T entity)
+        {
+            _context.ChangeTracker.Clear();
+            var tracker = _context.Attach(entity);
+            tracker.State = EntityState.Modified;
+            _context.SaveChanges();
+        }
+
+        public async Task<int> UpdateAsync(T entity)
+        {
+            _context.ChangeTracker.Clear();
+            var tracker = _context.Attach(entity);
+            tracker.State = EntityState.Modified;
+            return await _context.SaveChangesAsync();
+        }
+
+        public bool Remove(T entity)
+        {
+            _context.Remove(entity);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public async Task<bool> RemoveAsync(T entity)
+        {
+            _context.Remove(entity);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public T GetById(int id)
+        {
+            return _context.Set<T>().Find(id);
+        }
+
+        public async Task<T> GetByIdAsync(int id)
+        {
+            return await _context.Set<T>().FindAsync(id);
+        }
+
+        public T GetById(string code)
+        {
+            return _context.Set<T>().Find(code);
+        }
+
+        public async Task<T> GetByIdAsync(string code)
+        {
+            return await _context.Set<T>().FindAsync(code);
+        }
+
+
+        public T GetById(Guid code)
+        {
+            return _context.Set<T>().Find(code);
+        }
+
+        public async Task<T> GetByIdAsync(Guid code)
+        {
+            return await _context.Set<T>().FindAsync(code);
+        }
+
+        #region Separating asigned entity and save operators        
+
+        public void PrepareCreate(T entity)
+        {
+            _context.Add(entity);
+        }
+
+        public void PrepareUpdate(T entity)
+        {
+            var tracker = _context.Attach(entity);
+            tracker.State = EntityState.Modified;
+        }
+
+        public void PrepareRemove(T entity)
+        {
+            _context.Remove(entity);
+        }
+
+        public int Save()
+        {
+            return _context.SaveChanges();
+        }
+
+        public async Task<int> SaveAsync()
+        {
+            return await _context.SaveChangesAsync();
+        }
+
+        #endregion Separating asign entity and save operators
+    }
+}
+
+======================================================================
+3 tạo repo bảng làm việc chính 
+======================================================================
+chuyển sang public
+class phải implement  (: GenericRepository<entity cần làm việc>)
+nhớ tạo contructor ko tham số và contructor tham số truyền vào context 
+
+  
+        // Item là tên entity  bảng chính
+        // Items là tên entity bảng chính thêm chữ s
+        // Group là tên entity bảng phụ cấp 1 nằm trong bảng chính
+        // BPC2 là tên entity bảng phụ cấp 2 nằm trong bảng phụ cấp 1
+        // cái gì liên quan đến _context.   là Tên entity  thêm chữ s
+
+        // ItemId là tên khóa chính của bảng chính
+        public async Task<List<Item>> GetAllAsync()
+        {
+            var items = await _context.Items
+                .Include(p => p.Group)
+
+                //     trường hợp đề cho phân cấp 2  
+                //    .ThenInclude(b => b.BPC2)
+                // trường hợp đề cho hai phân cấp 1 
+                //.Include(p => p.Group)
+                .ToListAsync();
+
+            return items ?? new List<Item>();
+        }
+
+        public async Task<Item> GetByIdAsync(int id)
+        {
+            var items = await _context.Items
+                  .Include(p => p.Group)
+
+
+                  //     trường hợp đề cho phân cấp 2  
+                  //    .ThenInclude(b => b.BPC2)
+                  // trường hợp đề cho hai phân cấp 1 
+                  //.Include(p => p.Group)
+                  .FirstOrDefaultAsync(p => p.ItemId == id);
+            return items ?? new Item();
+        }
+
+        
+        // v1 là kiểu truyền vào  
+        // V1 là tên cột trong bảng  
+        
+        public async Task<List<Item>> SearchAsync(string v1, decimal? v2 //string status)
+        {
+            var listItem = await _context.Items
+                .Include(b => b.Group)
+                //    .ThenInclude(b => b.)
+                //.Include(p => p.)
+                .Where(c =>
+                (c.V1 == v1 || v1 == 0 || v1 == null)
+
+                // &&  (c..Contains() || string.IsNullOrEmpty())
+                && (c.Group.V2.Contains(v2) || string.IsNullOrEmpty(v2))  //Ref table: foreign key                
+
+                )                 // thường sẽ chấm cột date để sắp xếp
+                .OrderByDescending(c => c.).ToListAsync();
+
+            return listItem ?? new List<Item>();
+        }
+ 
+
+======================================================================
+4 tạo repo bản phụ
+======================================================================
+class phải implement  (: GenericRepository<entity cần làm việc>)
+nhớ tạo contructor ko tham số và contructor tham số truyền vào context 
+chuyển sang public
+
+
+======================================================================
+5 tạo bản repo account 	
+======================================================================
+class phải implement  (: GenericRepository<entity cần làm việc>)
+nhớ tạo contructor ko tham số và contructor tham số truyền vào context 
+
+
+ //AC là tên entity  bảng account
+ //ACs là tên entity bảng account thêm chữ s
+ public async Task<AC> GetAccount(String userName, String password)
+ {                      
+
+     return await _context.ACs.FirstOrDefaultAsync(u => u.UserName == userName && u.Password == password);
+ }
+
+======================================================================
+
+6 tạo interface Service bản chính 
+======================================================================
+chuyển sang public
+chuyển class sang thành interface
+
+
+ // Item là tên entity  bảng chính
+
+ Task<List<Item>> GetAllAsync();
+
+ Task<Item> GetByIdAsync(int id);
+
+ Task<List<Item>> SearchAsync(string x1, decimal? x2);
+
+ Task<int> CreateAsync(Item bc);
+
+ Task<int> UpdateAsync(Item bc);
+
+ Task<bool> DeleteAsync(int id);
+
+======================================================================
+
+
+7 tạo Service bản chính 
+======================================================================
+
+
+implement lớp interface service 
+
+
+
+
+//MainRepository repository của bảng chính
+//NS  tên service của bảng chính ( contructor)
+// Item là tên entity  bảng chính
+// Items là tên entity bảng chính thêm chữ s
+
+
+ private readonly MainRepository _repository;
+ public NS() => _repository = new MainRepository();
+
+
+ public async Task<int> CreateAsync(Item bc)
+ {
+     try
+     {
+         return await _repository.CreateAsync(bc);
+     }
+     catch (Exception e)
+     {
+          throw new Exception(e.Message);
+     }
+     return 0;
+ }
+
+ public async Task<bool> DeleteAsync(int id)
+ {
+     try
+     {
+         var item = await _repository.GetByIdAsync(id);
+         if (item != null)
+         {
+             return await _repository.RemoveAsync(item);
+
+         }
+     }
+     catch (Exception e)
+     {
+         throw new Exception(e.Message);
+     }
+     return false;
+ }
+
+ public async Task<List<Item>> GetAllAsync()
+ {
+     try
+     {
+         ////Business rules here
+         var items = await _repository.GetAllAsync();
+         return items;
+     }
+     catch (Exception e)
+     {
+         throw new Exception(e.Message);
+     }
+     return new List<Item>();
+ }
+
+ public async Task<Item> GetByIdAsync(int id)
+ {
+     try
+     {
+         var item = await _repository.GetByIdAsync(id);
+         return item;
+     }
+     catch (Exception e)
+     {
+          throw new Exception(e.Message);
+     }
+     return null;
+ }
+
+ public async Task<List<Item>> SearchAsync(string x1, float? x2)
+ {
+     try
+     {
+         var items = await _repository.SearchAsync(x1, x2);
+         return items;
+     }
+     catch (Exception e)
+     {
+         throw new Exception(e.Message);
+     }
+     return new List<Item>();
+ }
+
+ public async Task<int> UpdateAsync(Item bc)
+ {
+     try
+     {
+         return await _repository.UpdateAsync(bc);
+     }
+     catch (Exception e)
+     {
+         throw new Exception(e.Message);
+     }
+
+     return 0;
+ }
+======================================================================
+
+
+8 Tạp Account service 
+======================================================================
+
+ //BA tên entity bảng account
+ //RBA repository của bảng account
+ //NLAS tên service của bảng account ( contructor)
+
+ private readonly RBA _repository;
+ public NLAS() => _repository = new RBA();
+
+ public async Task<BA> GetAccount(string username, string password)
+ {
+     try
+     {
+         return await _repository.GetAccount(username, password);
+     }
+     catch (Exception ex) { }
+     return null;
+
+ }
+======================================================================
+
+9 Tạo Service bản Phụ
+======================================================================
+
+//LookupGroup tên entity bảng phụ
+//RPB repository của bảng phụ
+//NLTS tên service của bảng phụ ( contructor)
+
+private readonly RPB _repository;
+
+public NLTS() => _repository = new RPB();
+
+
+public async Task<List<LookupGroup>> GetAllAsync()
+{
+    try
+    {
+        var items = await _repository.GetAllAsync();
+        return items;
+    }
+    catch (Exception e)
+    {
+        throw new Exception(e.Message);
+    }
+}
+
+======================================================================
+
+10 cấu hình razor 
+======================================================================
+
+10.1appsetting
+
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "điền vào đây"
+  }
+}
+
+10.2 program 
+
+builder.Services.AddScoped<interface service bảng chính, service bảng chính>();
+builder.Services.AddScoped<service bản phụ>();
+builder.Services.AddScoped<service bản account>();
+
+
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        //nếu đề bài yêu cầu thay đổi các path mặc định
+        options.LoginPath = "/Login";
+
+        options.AccessDeniedPath = "/Account/Forbidden";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(15);
+    });
+
+
+
+app.MapRazorPages().RequireAuthorization(); // (dưới var app = builder.Build();)
+=======================================================================
+
+11 Copy Folder Account vào và làm tính năng login 
+
+
+
+
+
+======================================================================
+Phân quyền
+ [Authorize(Roles = "2")]
+
+
+12 trang Index
+======================================================================
+
+
+
+12.1 frontEnd
+dưới foreach thêm class="js-pagination-item"
+
+
+ở cuối 
+
+
+<div class="js-pagination" style="display: none; margin-top: 20px;"></div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/pagination.js"></script>
+
+<script>
+    generatePagination('.js-pagination', '.js-pagination-item', 3, 'Prev', 'Next');
+</script>
+
+
+
+
+
+12.2 BackEnd ( chưa có phần search ) 
+
+
+//Item bảng chỉnh
+
+public class IndexModel : PageModel
+{
+
+  private readonly ILionProfileService _context;
+
+  public IndexModel(ILionProfileService context)
+  {
+      _context = context;
+  }
+
+  public IList<Item> LionProfile { get; set; } = default!;
+
+  public async Task OnGetAsync(int? pageIndex)
+  {
+      // Lấy tất cả dữ liệu từ backend
+      var allProfiles = await _context.GetAllAsync();
+
+      // Sắp xếp theo ModifiedDate giảm dần (mới nhất lên đầu)
+
+      allProfiles = allProfiles.OrderByDescending(p => p.ModifiedDate).ToList();
+ LionProfile = allProfiles;
+     }
+
+   }
+}
+
+======================================================================
+
+13 Trang create
+======================================================================
+
+public class CreateModel : PageModel
+{
+    private readonly ILionProfileService _lionProfileService;
+    private readonly LionTypeService _lionTypeService;
+
+    public CreateModel(ILionProfileService lionProfileService,
+                       LionTypeService lionTypeService)
+    {
+        _lionProfileService = lionProfileService;
+        _lionTypeService = lionTypeService;
+    }
+
+    public async Task<IActionResult> OnGet()
+    {
+        var lionTypes = await _lionTypeService.GetAllAsync();
+
+        ViewData["LionTypeId"] = new SelectList(lionTypes, "LionTypeId", "LionTypeName");
+        return Page();
+    }
+
+    [BindProperty]
+    public LionProfile LionProfile { get; set; } = default!;
+
+    // For more information, see https://aka.ms/RazorPagesCRUD.
+    public async Task<IActionResult> OnPostAsync()
+    {
+        if (!ModelState.IsValid)
+        {
+            return Page();
+        }
+
+        await _lionProfileService.CreateAsync(LionProfile);
+        return RedirectToPage("./Index");
+    }
+   }
+}
+
+
+
+
+Các trường hợp validation 
+
+13.0  ( không có số ) 
+
+1. Chữ cái đầu phải là chữ THƯỜNG:
+[Required(ErrorMessage = "PantherName is required")]
+[MinLength(4, ErrorMessage = "PantherName must be at least 4 characters")]
+[RegularExpression(@"^[a-z][a-zA-Z]*(?:\s[a-zA-Z]+)*$",
+    ErrorMessage = "PantherName must start with a lowercase letter")]
+public string PantherName { get; set; }
+
+2. Chữ cái đầu phải là chữ HOA :
+
+[RegularExpression(@"^[A-Z][a-z]*(?:\s[A-Z][a-z]*)*$",
+    ErrorMessage = "PantherName must start each word with a capital letter")]
+public string PantherName { get; set; }
+
+3. Chữ cái thứ 2 phải là chữ HOA:
+[RegularExpression(@"^[a-zA-Z][A-Z][a-zA-Z]*(?:\s[a-zA-Z]+)*$",
+    ErrorMessage = "Second character must be uppercase")]
+public string PantherName { get; set; }
+
+4. Chữ cái thứ 3 phải là chữ HOA:
+[RegularExpression(@"^[a-zA-Z]{2}[A-Z][a-zA-Z]*(?:\s[a-zA-Z]+)*$",
+    ErrorMessage = "Third character must be uppercase")]
+public string PantherName { get; set; }
+
+5. Không có ký tự đặc biệt (#, @, &, (, )) - chỉ cho phép chữ cái và khoảng trắng:
+[RegularExpression(@"^[a-zA-Z]+(?:\s[a-zA-Z]+)*$",
+    ErrorMessage = "PantherName must contain only letters and spaces")]
+public string PantherName { get; set; }
+
+13.1 cho phép số 
+1. Chữ cái đầu phải là chữ THƯỜNG (cho phép số):
+[Required(ErrorMessage = "PantherName is required")]
+[MinLength(4, ErrorMessage = "PantherName must be at least 4 characters")]
+[RegularExpression(@"^[a-z][a-zA-Z0-9]*(?:\s[a-zA-Z0-9]+)*$",
+    ErrorMessage = "PantherName must start with a lowercase letter and contain no special characters (#, @, &, (, ))")]
+public string PantherName { get; set; }
+
+2. Chữ cái đầu phải là chữ HOA (cho phép số):
+[Required(ErrorMessage = "PantherName is required")]
+[MinLength(4, ErrorMessage = "PantherName must be at least 4 characters")]
+[RegularExpression(@"^[A-Z][a-z0-9]*(?:\s[A-Z][a-z0-9]*)*$",
+    ErrorMessage = "PantherName must start each word with a capital letter and contain no special characters (#, @, &, (, ))")]
+public string PantherName { get; set; }
+
+3.Chữ cái thứ 2 phải là chữ HOA (cho phép số):
+[Required(ErrorMessage = "PantherName is required")]
+[MinLength(4, ErrorMessage = "PantherName must be at least 4 characters")]
+[RegularExpression(@"^[a-zA-Z][A-Z][a-zA-Z0-9]*(?:\s[a-zA-Z0-9]+)*$",
+    ErrorMessage = "Second character must be uppercase and contain no special characters (#, @, &, (, ))")]
+public string PantherName { get; set; }
+
+4. Chữ cái thứ 3 phải là chữ HOA (cho phép số):
+[Required(ErrorMessage = "PantherName is required")]
+[MinLength(4, ErrorMessage = "PantherName must be at least 4 characters")]
+[RegularExpression(@"^[a-zA-Z]{2}[A-Z][a-zA-Z0-9]*(?:\s[a-zA-Z0-9]+)*$",
+    ErrorMessage = "Third character must be uppercase and contain no special characters (#, @, &, (, ))")]
+public string PantherName { get; set; }
+
+
+
+12.1. Required - Bắt buộc nhập
+[Required(ErrorMessage = "Tên là bắt buộc")]
+public string Name { get; set; }
+
+[Required(ErrorMessage = "Email không được để trống")]
+public string Email { get; set; }
+
+12.2. String Length - Độ dài chuỗi
+// Độ dài tối đa
+[StringLength(100, ErrorMessage = "Tên không được vượt quá 100 ký tự")]
+public string Name { get; set; }
+
+// Độ dài tối thiểu và tối đa
+[StringLength(50, MinimumLength = 3, ErrorMessage = "Tên phải từ 3-50 ký tự")]
+public string Username { get; set; }
+
+12.3. Range - Phạm vi số
+[Range(1, 150, ErrorMessage = "Tuổi phải từ 1-150")]
+public int Age { get; set; }
+
+[Range(0.01, 999999.99, ErrorMessage = "Giá phải từ 0.01 đến 999999.99")]
+public decimal Price { get; set; }
+
+[Range(30.01, double.MaxValue, ErrorMessage = "Cân nặng phải lớn hơn 30")]
+public decimal? Weight { get; set; }
+
+12.4. RegularExpression - Biểu thức chính quy
+
+// Email
+[RegularExpression(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$", 
+    ErrorMessage = "Email không hợp lệ")]
+public string Email { get; set; }
+
+// Số điện thoại (Việt Nam)
+[RegularExpression(@"^(0|\+84)(3[2-9]|5[6|8|9]|7[0|6-9]|8[1-9]|9[0-9])[0-9]{7}$", 
+    ErrorMessage = "Số điện thoại không hợp lệ")]
+public string PhoneNumber { get; set; }
+
+// Chỉ chữ cái và khoảng trắng
+[RegularExpression(@"^[a-zA-ZÀ-ỹ\s]+$", 
+    ErrorMessage = "Chỉ được nhập chữ cái")]
+public string FullName { get; set; }
+
+// Chữ và số, không ký tự đặc biệt
+[RegularExpression(@"^[a-zA-Z0-9]+$", 
+    ErrorMessage = "Chỉ được chữ và số")]
+public string Code { get; set; }
+
+
+12.5. EmailAddress - Email
+[EmailAddress(ErrorMessage = "Email không đúng định dạng")]
+public string Email { get; set; }
+
+12.6. Phone - Số điện thoại
+[Phone(ErrorMessage = "Số điện thoại không hợp lệ")]
+public string PhoneNumber { get; set; }
+
+12.7. Url - Đường dẫn URL
+[Url(ErrorMessage = "URL không hợp lệ")]
+public string Website { get; set; }
+
+12.8. Compare - So sánh 2 trường
+[Required]
+[DataType(DataType.Password)]
+public string Password { get; set; }
+
+[Required]
+[Compare("Password", ErrorMessage = "Mật khẩu xác nhận không khớp")]
+[DataType(DataType.Password)]
+public string ConfirmPassword { get; set; }
+
+12.9. DataType - Kiểu dữ liệu
+[DataType(DataType.Password)]
+public string Password { get; set; }
+
+[DataType(DataType.Date)]
+public DateTime DateOfBirth { get; set; }
+
+[DataType(DataType.Currency)]
+public decimal Salary { get; set; }
+
+[DataType(DataType.MultilineText)]
+public string Description { get; set; }
+
+
+Nâng Cao
+12.10. Custom Validation - Validation tùy chỉnh
+// Tạo class validation tùy chỉnh
+public class CapitalizedWordsAttribute : ValidationAttribute
+{
+    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    {
+        if (value == null)
+            return ValidationResult.Success;
+
+        string input = value.ToString();
+        
+        // Kiểm tra ký tự đặc biệt
+        if (input.Contains("#") || input.Contains("@") || input.Contains("&") 
+            || input.Contains("(") || input.Contains(")"))
+        {
+            return new ValidationResult("Không được chứa ký tự đặc biệt (#, @, &, (, ))");
+        }
+
+        // Kiểm tra mỗi từ bắt đầu bằng chữ hoa
+        var words = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        foreach (var word in words)
+        {
+            if (!char.IsUpper(word[0]))
+            {
+                return new ValidationResult("Mỗi từ phải bắt đầu bằng chữ hoa");
+            }
+        }
+
+        return ValidationResult.Success;
+    }
+}
+
+// Sử dụng
+[CapitalizedWords]
+public string LionName { get; set; }
+
+12.11. Credit Card
+[CreditCard(ErrorMessage = "Số thẻ tín dụng không hợp lệ")]
+public string CardNumber { get; set; }
+
+12.12. Kết hợp nhiều validation
+[Required(ErrorMessage = "Họ tên là bắt buộc")]
+[StringLength(100, MinimumLength = 4, ErrorMessage = "Họ tên phải từ 4-100 ký tự")]
+[RegularExpression(@"^[A-Z][a-zA-Z\s]*$", 
+    ErrorMessage = "Họ tên phải bắt đầu bằng chữ hoa và không chứa số")]
+[Display(Name = "Họ và tên")]
+public string FullName { get; set; }
+
+[Required]
+[Range(18, 100, ErrorMessage = "Tuổi phải từ 18-100")]
+[Display(Name = "Tuổi")]
+public int Age { get; set; }
+
+[Required]
+[EmailAddress(ErrorMessage = "Email không hợp lệ")]
+[StringLength(100)]
+public string Email { get; set; }
+
+
+
+12.13. Validation cho DateTime
+// Phải là ngày trong quá khứ
+public class PastDateAttribute : ValidationAttribute
+{
+    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    {
+        if (value == null) return ValidationResult.Success;
+        
+        DateTime date = (DateTime)value;
+        if (date >= DateTime.Now)
+        {
+            return new ValidationResult("Ngày phải là ngày trong quá khứ");
+        }
+        return ValidationResult.Success;
+    }
+}
+
+[PastDate]
+public DateTime DateOfBirth { get; set; }
+
+// Phải từ 18 tuổi trở lên
+public class MinimumAgeAttribute : ValidationAttribute
+{
+    private readonly int _minimumAge;
+
+    public MinimumAgeAttribute(int minimumAge)
+    {
+        _minimumAge = minimumAge;
+    }
+
+    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    {
+        if (value == null) return ValidationResult.Success;
+        
+        DateTime date = (DateTime)value;
+        int age = DateTime.Now.Year - date.Year;
+        if (DateTime.Now.DayOfYear < date.DayOfYear)
+            age--;
+
+        if (age < _minimumAge)
+        {
+            return new ValidationResult($"Tuổi phải từ {_minimumAge} trở lên");
+        }
+        return ValidationResult.Success;
+    }
+}
+
+[MinimumAge(18)]
+public DateTime DateOfBirth { get; set; }
+
+
+
+12.14. File Upload Validation
+public class AllowedExtensionsAttribute : ValidationAttribute
+{
+    private readonly string[] _extensions;
+    
+    public AllowedExtensionsAttribute(string[] extensions)
+    {
+        _extensions = extensions;
+    }
+
+    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    {
+        if (value is IFormFile file)
+        {
+            var extension = Path.GetExtension(file.FileName);
+            if (!_extensions.Contains(extension.ToLower()))
+            {
+                return new ValidationResult($"Chỉ chấp nhận file: {string.Join(", ", _extensions)}");
+            }
+        }
+        return ValidationResult.Success;
+    }
+}
+
+public class MaxFileSizeAttribute : ValidationAttribute
+{
+    private readonly int _maxFileSize;
+    
+    public MaxFileSizeAttribute(int maxFileSize)
+    {
+        _maxFileSize = maxFileSize;
+    }
+
+    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    {
+        if (value is IFormFile file)
+        {
+            if (file.Length > _maxFileSize)
+            {
+                return new ValidationResult($"Kích thước file tối đa {_maxFileSize / 1024 / 1024} MB");
+            }
+        }
+        return ValidationResult.Success;
+    }
+}
+
+[AllowedExtensions(new string[] { ".jpg", ".png", ".gif" })]
+[MaxFileSize(5 * 1024 * 1024)] // 5MB
+public IFormFile Photo { get; set; }
+
+
+12.15. Display Name
+[Display(Name = "Họ và tên")]
+public string FullName { get; set; }
+
+[Display(Name = "Ngày sinh")]
+public DateTime DateOfBirth { get; set; }
+
+[Display(Name = "Địa chỉ email")]
+public string Email { get; set; }
+
+
+Tổng Thể CRUD chưa Signal 
+======================================================================
+
+
+13.Create 
+======================================================================
+
+      private readonly ILionProfileService _lionProfileService;
+      private readonly LionTypeService _lionTypeService;
+
+      public CreateModel(ILionProfileService context)
+      {
+          _lionProfileService = context;
+          _lionTypeService = new LionTypeService();
+      }
+
+      public async Task<IActionResult> OnGet()
+      {
+          LionProfile = new LionProfile();
+          LionProfile.ModifiedDate = DateTime.Now;
+
+          var lionTypes = await _lionTypeService.GetAllAsync();
+
+          ViewData["LionTypeId"] = new SelectList(lionTypes, "LionTypeId", "LionTypeName");
+          return Page();
+      }
+
+      [BindProperty]
+      public LionProfile LionProfile { get; set; } = default!;
+
+      // For more information, see https://aka.ms/RazorPagesCRUD.
+      public async Task<IActionResult> OnPostAsync()
+      {
+          if (!ModelState.IsValid)
+          {
+              return Page();
+          }
+
+            await _lionProfileService.CreateAsync(LionProfile);
+          return RedirectToPage("./Index");
+      }
+}
+
+
+======================================================================
+
+
+14.Delete
+======================================================================
+   private readonly ILionProfileService _lionProfileService;
+  private readonly LionTypeService _lionTypeService;
+
+  public DeleteModel(ILionProfileService context)
+  {
+      _lionProfileService = context;
+      _lionTypeService = new LionTypeService();
+  }
+
+  [BindProperty]
+  public LionProfile LionProfile { get; set; } = default!;
+
+  public async Task<IActionResult> OnGetAsync(int? id)
+  {
+      if (id == null)
+      {
+          return NotFound();
+      }
+
+      var lionprofile = await _lionProfileService .GetByIdAsync(id.Value);
+
+      var lionType = await _lionTypeService.GetAllAsync();
+
+      lionprofile.LionType = lionType.FirstOrDefault(l => l.LionTypeId == lionprofile.LionTypeId);
+
+      if (lionprofile == null)
+      {
+          return NotFound();
+      }
+      else
+      {
+          LionProfile = lionprofile;
+      }
+      return Page();
+  }
+
+  public async Task<IActionResult> OnPostAsync(int? id)
+  {
+      if (id == null)
+      {
+          return NotFound();
+      }   
+
+      await _lionProfileService.DeleteAsync(id.Value);
+
+      return RedirectToPage("./Index");
+  }
+}
+
+
+======================================================================
+
+
+15.Details
+======================================================================
+private readonly ILionProfileService _lionProfileService;
+private readonly LionTypeService _lionTypeService;
+
+public DetailsModel(ILionProfileService context)
+{
+    _lionProfileService = context;
+    _lionTypeService = new LionTypeService();
+}
+
+public LionProfile LionProfile { get; set; } = default!;
+
+public async Task<IActionResult> OnGetAsync(int? id)
+{
+    if (id == null)
+    {
+        return NotFound();
+    }
+
+    var lionprofile = await _lionProfileService.GetByIdAsync(id.Value);
+
+    var lionType = await _lionTypeService.GetAllAsync();
+
+    lionprofile.LionType = lionType.FirstOrDefault(l => l.LionTypeId == lionprofile.LionTypeId);
+
+    if (lionprofile == null)
+    {
+        return NotFound();
+    }
+    else
+    {
+        LionProfile = lionprofile;
+    }
+    return Page();
+}
+}
+
+
+======================================================================
+
+
+16.Edit
+======================================================================
+
+  private readonly ILionProfileService _lionProfileService;
+ private readonly LionTypeService _lionTypeService;
+
+ public EditModel(ILionProfileService context)
+ {
+     _lionProfileService = context;
+     _lionTypeService = new LionTypeService();
+ }
+
+ [BindProperty]
+ public LionProfile LionProfile { get; set; } = default!;
+
+ public async Task<IActionResult> OnGetAsync(int? id)
+ {
+     if (id == null)
+     {
+         return NotFound();
+     }
+     var lionProfile = await _lionProfileService.GetByIdAsync(id.Value);
+    
+     if (lionProfile == null)
+     {
+         return NotFound();
+     }
+
+     var lionTypes = await _lionTypeService.GetAllAsync();
+    
+     LionProfile = lionProfile;
+
+     ViewData["LionTypeId"] = new SelectList(lionTypes, "LionTypeId", "LionTypeName");
+
+     lionProfile.LionType = lionTypes.FirstOrDefault(lt => lt.LionTypeId == lionProfile.LionTypeId);
+
+     return Page();
+ }
+
+ // To protect from overposting attacks, enable the specific properties you want to bind to.
+ // For more information, see https://aka.ms/RazorPagesCRUD.
+ public async Task<IActionResult> OnPostAsync()
+ {
+     if (!ModelState.IsValid)
+     {
+         return Page();
+     }
+     try
+     {
+         await _lionProfileService.UpdateAsync(LionProfile);
+     }
+     catch (Exception ex)
+     {
+         throw new Exception(ex.Message + '/' + ex.StackTrace);
+     }
+
+     return RedirectToPage("./Index");
+ }
+
+}
+
+
+
+======================================================================
+
+
+17.Index
+======================================================================
+
+Backend ( Search nằm trong index)
+
+  private readonly IPantherProfileService _context;
+
+  public IndexModel(IPantherProfileService context)
+  {
+      _context = context;
+  }
+
+  [BindProperty(SupportsGet = true)]
+  public float? Weight { get; set; }
+
+  [BindProperty(SupportsGet = true)]
+  public string PantherTypeName { get; set; }
+
+
+
+  public IList<PantherProfile> PantherProfile { get; set; } = default!;
+
+  public async Task OnGetAsync(int? pageIndex)
+  {
+      // Lấy tất cả dữ liệu từ backend
+      var allProfiles = await _context.GetAllAsync();
+
+      // Sắp xếp theo ModifiedDate giảm dần (mới nhất lên đầu)
+
+      allProfiles = allProfiles.OrderByDescending(p => p.PantherProfileId).ToList();
+
+
+      if (!string.IsNullOrEmpty(PantherTypeName) || Weight != null)
+      {
+          allProfiles = await _context.SearchAsync(PantherTypeName, Weight);
+          // Sắp xếp lại sau khi search
+          allProfiles = allProfiles.OrderByDescending(p => p.ModifiedDate).ToList();
+
+      }
+
+
+
+      PantherProfile = allProfiles;
+  }
+
+FrontEnd  (Search nằm trong index)
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h5 class="card-title text-primary mb-3"><i class="bi bi-search me-2"></i> Search Records</h5>
+        <form asp-page="./Index" method="get">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label for="x" class="form-label">Lion Type Name</label>
+                    <input type="text" class="form-control" id="x" name="X" value="@Model.X" />
+                </div>
+                <div class="col-md-4">
+                    <label for="y" class="form-label">Weight</label>
+                    <input type="number" class="form-control" id="y" name="Y" value="@Model.Y" />
+                </div>
+            </div>
+            <div class="d-flex justify-content-end mt-3">
+                <button class="btn btn-primary me-2" type="submit">
+                    <i class="bi bi-search me-1"></i> Search
+                </button>
+                <a class="btn btn-outline-secondary" asp-page="./Index">
+                    Clear
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+======================================================================
+
+
+17.Search
+======================================================================
+FrontEnd Index thêm button search 
+<p>
+    <a asp-page="Create" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Create New
+    </a>
+    <a asp-page="Search" class="btn btn-primary">
+        <i class="bi bi-search"></i> Search Lion Profiles
+    </a>
+</p>
+
+
+
+
+2 đề bài yêu cầu nằm ngoài index
+
+FrontEnd Search
+
+@{
+    ViewData["Title"] = "Search  Profiles";
+}
+
+<h1><i class="bi bi-search"></i> Search Profiles</h1>
+
+<p>
+    <a asp-page="Index" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Back to List
+    </a>
+</p>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h5 class="card-title text-primary mb-3"><i class="bi bi-funnel me-2"></i> Search Criteria</h5>
+        <form asp-page="./Search" method="get">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="lionTypeName" class="form-label">Lion Type Name</label>
+                    <input type="text" class="form-control" id="lionTypeName" name="LionTypeName" 
+                           value="@Model.LionTypeName"/>
+                </div>
+                <div class="col-md-6">
+                    <label for="weight" class="form-label">Weight</label>
+                    <input type="number" class="form-control" id="weight" name="Weight" 
+                           value="@Model.Weight" />
+                </div>
+            </div>
+            <div class="d-flex justify-content-end mt-3">
+                <button class="btn btn-primary me-2" type="submit">
+                    <i class="bi bi-search me-1"></i> Search
+                </button>
+                <a class="btn btn-outline-secondary" asp-page="./Search">
+                    <i class="bi bi-x-circle me-1"></i> Clear
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (Model.LionProfile != null && Model.LionProfile.Count > 0)
+{
+  
+	COPY table bên index qua 
+   
+}
+else if (!string.IsNullOrEmpty(Model.LionTypeName) || Model.Weight != null)
+{
+    <div class="alert alert-warning">
+        <i class="bi bi-exclamation-triangle me-2"></i>
+        No results found matching your search criteria.
+    </div>
+}
+else
+{
+    <div class="alert alert-secondary">
+        <i class="bi bi-lightbulb me-2"></i>
+        Enter search criteria above to find  profiles.
+    </div>
+}
+
+BackEnd Search
+
+[Authorize(Roles = "2,3")]
+ public class SearchModel : PageModel
+ {
+     private readonly ILionProfileService _lionProfileService;
+
+     public SearchModel(ILionProfileService lionProfileService)
+     {
+         _lionProfileService = lionProfileService;
+     }
+
+     [BindProperty(SupportsGet = true)]
+     public float? Weight { get; set; }
+
+     [BindProperty(SupportsGet = true)]
+     public string LionTypeName { get; set; }
+
+     public IList<LionProfile> LionProfile { get; set; } = new List<LionProfile>();
+
+     public async Task OnGetAsync()
+     {
+         // Nếu có tham số search, thực hiện tìm kiếm
+         if (!string.IsNullOrEmpty(LionTypeName) || Weight != null)
+         {
+             LionProfile = await _lionProfileService.SearchAsync(LionTypeName, Weight);
+             
+             // Sắp xếp theo ModifiedDate giảm dần (mới nhất lên đầu)
+             LionProfile = LionProfile.OrderByDescending(p => p.ModifiedDate).ToList();
+         }
+         // Nếu không có tham số, để list rỗng (hiển thị form search)
+     }
+ }
+
+
+
+======================================================================
+
+
+18.Signal Delete 
+======================================================================
+
+
+
+
+Tạo Forder Hubs 
+sau đó tạo class hub
+
+
+ public class LionHub : Hub
+ {
+         private readonly ILionProfileService _lionProfileService;
+         public LionHub(ILionProfileService lionProfileService)
+         {
+             _lionProfileService = lionProfileService;
+         }
+
+
+         public async Task HubDelete_LionProfile(string id)
+         {
+             await Clients.All.SendAsync("ReceiveDelete_LionProfile", id);
+
+
+             await _lionProfileService.DeleteAsync(int.Parse(id));
+         }
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+builder.Services.AddSignalR(); // thêm trên var app = builder.Build();
+
+
+app.MapHub<LionHub>("/LionHub");
+
+
+
+
+
+
+FrontEnd 
+
+TRANG DELETE 
+
+
+
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script>
+    "use strict";
+
+    var connection = new signalR.HubConnectionBuilder().withUrl("/lionHub").build();
+
+    connection.start().then(function () {
+        console.log("Connected to the SignalR Hub");
+    }).catch(function (err) {
+        return console.error(err.toString());
+    });
+
+    document.getElementById("btnHubDelete").addEventListener("click", function (event) {
+         event.preventDefault();
+
+         if (!confirm('Are you sure you want to delete this Lion Profile?')) {
+             return;
+         }
+
+         var lionProfileId = document.getElementById("LionProfile_LionProfileId").value;
+
+         connection.invoke("HubDelete_LionProfile", lionProfileId)
+             .then(function () {
+                 alert("Deleted successfully!");
+                 window.location.href = '/LionProfile/Index';
+             })
+             .catch(function (err) {
+                 alert("Failed to delete: " + err.toString());
+             });
+     });
+
+</script>
+
+
+
+TRANG INDEX 
+	THÊM ID DƯỚI FOREACH 
+
+
+          THÊM ID TRÊN FOREACH 
+
+
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script>
+    "use strict";
+
+    var connection = new signalR.HubConnectionBuilder().withUrl("/lionHub").build();
+
+    connection.start().then(function () {
+        console.log(" Connected to the SignalR Hub");
+    }).catch(function (err) {
+        return console.error(err.toString());
+    });
+
+    connection.on("ReceiveDelete_LionProfile", function (LionProfileId) {
+        $('#LionProfileTBodyId').find(`tr[id='${LionProfileId}']`).remove();
+    });
+
+</script>
+
+
+
+Trang Edit 
+thêm id
+
+
+
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script>
+    "use strict";
+
+    var connection = new signalR.HubConnectionBuilder().withUrl("/LionHub").build();
+
+    connection.start().then(function () {
+        console.log("CuongCLA: Connected to the SignalR Hub");
+    }).catch(function (err) {
+        return console.error(err.toString());
+    });
+
+    //Delete
+    connection.on("ReceiveDelete_LionProfile", function (LionProfileId) {
+        document.getElementById("lionProfileId").innerHTML = "<div class='alert alert-warning text-center' role='alert'><i class='fas fa-exclamation-triangle me-2'></i>This payment record (ID: " + LionProfileId + ") has been deleted.</div>";
+    });
+
+
+</script>
+
+
+
+Trang detail 
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script>
+    "use strict";
+
+    var connection = new signalR.HubConnectionBuilder().withUrl("/LionHub").build();
+
+    connection.start().then(function () {
+        console.log("CuongCLA: Connected to the SignalR Hub");
+    }).catch(function (err) {
+        return console.error(err.toString());
+    });
+
+    //Delete 
+    connection.on("ReceiveDelete_LionProfile", function (LionProfileId) {
+        document.getElementById("lionProfileId").innerHTML = "<div class='alert alert-warning text-center' role='alert'><i class='fas fa-exclamation-triangle me-2'></i>This payment record (ID: " + LionProfileId + ") has been deleted.</div>";
+    });
+
+
+</script>
+
+Trang Search 
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script>
+    "use strict";
+
+    var connection = new signalR.HubConnectionBuilder().withUrl("/lionHub").build();
+
+    connection.start().then(function () {
+        console.log(" Connected to the SignalR Hub");
+    }).catch(function (err) {
+        return console.error(err.toString());
+    });
+
+    connection.on("ReceiveDelete_LionProfile", function (LionProfileId) {
+        $('#LionProfileTBodyId').find(`tr[id='${LionProfileId}']`).remove();
+    });
+
+</script>
+
+
+
+
+
+
+==================================================================
+
+🔍 Chi tiết từng loại Validation
+1. Required Fields
+csharp
+[Required(ErrorMessage = "This field is required")]
+public string FieldName { get; set; }
+2. Length Validation
+csharp
+// Minimum length
+[MinLength(4, ErrorMessage = "Minimum 4 characters required")]
+public string Name { get; set; }
+
+// Maximum length
+[MaxLength(10, ErrorMessage = "Maximum 10 characters allowed")]
+public string TeamName { get; set; }
+
+// String length range
+[StringLength(10, MinimumLength = 3, ErrorMessage = "Must be between 3-10 characters")]
+public string TeamName { get; set; }
+3. Range Validation
+csharp
+// For numeric values
+[Range(30, int.MaxValue, ErrorMessage = "Must be greater than 30")]
+public int Weight { get; set; }
+
+[Range(1, 50, ErrorMessage = "Must be between 1 and 50")]
+public int StoreQuantity { get; set; }
+4. Format & Pattern Validation
+Capitalize First Letter + No Special Chars
+csharp
+[RegularExpression(@"^([A-Z][a-z]*)(\s[A-Z][a-z]*)*$", 
+    ErrorMessage = "Each word must start with capital letter, no special characters")]
+public string PantherName { get; set; }
+Capitalize + Allow Numbers
+csharp
+[RegularExpression(@"^([A-Z0-9][a-zA-Z0-9]*)(\s[A-Z0-9][a-zA-Z0-9]*)*$", 
+    ErrorMessage = "Each word must start with capital letter or number")]
+public string ActiveIngredients { get; set; }
+Alphanumeric + Capitalize First Letter
+csharp
+[RegularExpression(@"^([A-Z][a-zA-Z0-9]*)(\s[A-Z][a-zA-Z0-9]*)*$", 
+    ErrorMessage = "Only letters and numbers, each word starts with capital")]
+public string TeamName { get; set; }
+Vehicle Plate Format
+csharp
+[RegularExpression(@"^\d{2}[A-Z]-\d{5,6}$", 
+    ErrorMessage = "Format must be ##X-YYYYY or ##X-YYYYYY")]
+public string VehiclePlate { get; set; }
+Allow Special Characters but No Numbers
+csharp
+[RegularExpression(@"^([A-Z][a-zA-Z@$&()]*)(\s[A-Z][a-zA-Z@$&()]*)*$", 
+    ErrorMessage = "No numbers allowed, but special characters @$&() permitted")]
+public string ArtTitle { get; set; }
+Allow Numbers and Special Characters
+csharp
+[RegularExpression(@"^([A-Z0-9][a-zA-Z0-9@#$&()]*)(\s[A-Z0-9][a-zA-Z0-9@#$&()]*)*$", 
+    ErrorMessage = "Can contain numbers and special characters @#$&()")]
+public string BraceletName { get; set; }
+5. Date Validation
+csharp
+public class Product
+{
+    [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+    public DateTime CreatedDate { get; set; } = DateTime.Now;
+    
+    // Prevent updates
+    public override void SetModified()
+    {
+        // Skip setting modified date for CreatedDate
+        base.SetModified();
+        // Additional logic to prevent CreatedDate updates
+    }
+}
+6. Foreign Key & Dropdown Validation
+csharp
+[Required]
+[ForeignKey("Manufacturer")]
+public int ManufacturerID { get; set; }
+public virtual Manufacturer Manufacturer { get; set; }
+
+// For UI - use ComboBox bound to Manufacturer table
+7. Enum Validation
+csharp
+public enum PointValue
+{
+    Zero = 0,
+    One = 1,
+    Three = 3
+}
+
+public class Team
+{
+    public int Points { get; set; }
+    
+    public void AddPoints(PointValue points)
+    {
+        this.Points += (int)points;
+        CalculatePosition(); // Auto-calculate position
+    }
+}
+8. Custom Validation Classes
+Date Comparison Validation
+csharp
+public class DateComparisonAttribute : ValidationAttribute
+{
+    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    {
+        var model = (ParkingRecord)validationContext.ObjectInstance;
+        
+        if (model.CheckOutTime.HasValue && model.CheckOutTime < model.CheckInTime)
+        {
+            return new ValidationResult("CheckOutTime must be greater than or equal to CheckInTime");
+        }
+        
+        return ValidationResult.Success;
+    }
+}
+
+public class ParkingRecord
+{
+    [Required]
+    public DateTime CheckInTime { get; set; }
+    
+    public DateTime? CheckOutTime { get; set; }
+}
+Auto-calculated Position
+csharp
+public class Team
+{
+    public int Points { get; set; }
+    public int Position { get; private set; }
+    
+    public void CalculatePosition()
+    {
+        // Logic to calculate position based on points
+        // This would typically query other teams in the same group
+    }
+}
+🛠️ Implementation Example
+csharp
+public class PantherProfile
+{
+    [Key]
+    public int Id { get; set; }
+    
+    [Required]
+    [MinLength(4)]
+    [RegularExpression(@"^([A-Z][a-z]*)(\s[A-Z][a-z]*)*$")]
+    public string PantherName { get; set; }
+    
+    [Required]
+    [Range(90, int.MaxValue)]
+    public int Weight { get; set; }
+}
+
+public class ParkingRecord
+{
+    [Key]
+    public int Id { get; set; }
+    
+    [Required]
+    [RegularExpression(@"^\d{2}[A-Z]-\d{5,6}$")]
+    public string VehiclePlate { get; set; }
+    
+    [Required]
+    public DateTime CheckInTime { get; set; }
+    
+    public DateTime? CheckOutTime { get; set; }
+    
+    [Required]
+    [ForeignKey("VehicleType")]
+    public int VehicleTypeId { get; set; }
+    public virtual VehicleType VehicleType { get; set; }
+    
+    // Custom validation method
+    public bool IsValidCheckOutTime()
+    {
+        return !CheckOutTime.HasValue || CheckOutTime >= CheckInTime;
+    }
+}

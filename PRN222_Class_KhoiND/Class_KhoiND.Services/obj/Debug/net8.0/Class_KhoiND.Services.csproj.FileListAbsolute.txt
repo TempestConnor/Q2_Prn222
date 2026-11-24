@@ -1,0 +1,30 @@
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Services\bin\Debug\net8.0\Class_KhoiND.Services.deps.json
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Services\bin\Debug\net8.0\Class_KhoiND.Services.dll
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Services\bin\Debug\net8.0\Class_KhoiND.Services.pdb
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Services\bin\Debug\net8.0\Class_KhoiND.Repositories.dll
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Services\bin\Debug\net8.0\Class_KhoiND.Repositories.pdb
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Services\obj\Debug\net8.0\Class_KhoiND.Services.csproj.AssemblyReference.cache
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Services\obj\Debug\net8.0\Class_KhoiND.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Services\obj\Debug\net8.0\Class_KhoiND.Services.AssemblyInfoInputs.cache
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Services\obj\Debug\net8.0\Class_KhoiND.Services.AssemblyInfo.cs
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Services\obj\Debug\net8.0\Class_KhoiND.Services.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Services\obj\Debug\net8.0\Class_Kh.D252CF45.Up2Date
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Services\obj\Debug\net8.0\Class_KhoiND.Services.dll
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Services\obj\Debug\net8.0\refint\Class_KhoiND.Services.dll
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Services\obj\Debug\net8.0\Class_KhoiND.Services.pdb
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Services\obj\Debug\net8.0\ref\Class_KhoiND.Services.dll
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Services\obj\Debug\net8.0\Class_KhoiND.Services.dll
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Services\obj\Debug\net8.0\refint\Class_KhoiND.Services.dll
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Services\obj\Debug\net8.0\Class_KhoiND.Services.pdb
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Services\bin\Debug\net8.0\Class_KhoiND.Services.deps.json
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Services\bin\Debug\net8.0\Class_KhoiND.Services.dll
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Services\bin\Debug\net8.0\Class_KhoiND.Services.pdb
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Services\bin\Debug\net8.0\Class_KhoiND.Repositories.dll
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Services\bin\Debug\net8.0\Class_KhoiND.Repositories.pdb
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Services\obj\Debug\net8.0\Class_KhoiND.Services.csproj.AssemblyReference.cache
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Services\obj\Debug\net8.0\Class_KhoiND.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Services\obj\Debug\net8.0\Class_KhoiND.Services.AssemblyInfoInputs.cache
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Services\obj\Debug\net8.0\Class_KhoiND.Services.AssemblyInfo.cs
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Services\obj\Debug\net8.0\Class_KhoiND.Services.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Services\obj\Debug\net8.0\Class_Kh.D252CF45.Up2Date
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Services\obj\Debug\net8.0\ref\Class_KhoiND.Services.dll

@@ -1,0 +1,6 @@
+dotnet aspnet-codegenerator razorpage `
+  -m Class_KhoiND.Repositories.Models.Item `
+  -dc Class_KhoiND.Repositories.Models.PRN222_PE01_2Context `
+  -outDir Pages/Equipment `
+  -udl `
+  --referenceScriptLibraries

@@ -1,0 +1,478 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\prn222_class_khoind\\pages\\equipment\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|solutionrelative:prn222_class_khoind\\pages\\equipment\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\prn222_class_khoind\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|solutionrelative:prn222_class_khoind\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\prn222_class_khoind\\pages\\equipment\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|solutionrelative:prn222_class_khoind\\pages\\equipment\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\prn222_class_khoind\\pages\\equipment\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|solutionrelative:prn222_class_khoind\\pages\\equipment\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\prn222_class_khoind\\pages\\equipment\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|solutionrelative:prn222_class_khoind\\pages\\equipment\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30298EF2-DD84-245C-DD05-35829400CBB6}|Class_KhoiND.Repositories\\Class_KhoiND.Repositories.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\class_khoind.repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30298EF2-DD84-245C-DD05-35829400CBB6}|Class_KhoiND.Repositories\\Class_KhoiND.Repositories.csproj|solutionrelative:class_khoind.repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A9C38D0-FB81-22FE-36F4-C5E34688F568}|Class_KhoiND.Services\\Class_KhoiND.Services.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\class_khoind.services\\mainservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A9C38D0-FB81-22FE-36F4-C5E34688F568}|Class_KhoiND.Services\\Class_KhoiND.Services.csproj|solutionrelative:class_khoind.services\\mainservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30298EF2-DD84-245C-DD05-35829400CBB6}|Class_KhoiND.Repositories\\Class_KhoiND.Repositories.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\class_khoind.repositories\\mainrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30298EF2-DD84-245C-DD05-35829400CBB6}|Class_KhoiND.Repositories\\Class_KhoiND.Repositories.csproj|solutionrelative:class_khoind.repositories\\mainrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A9C38D0-FB81-22FE-36F4-C5E34688F568}|Class_KhoiND.Services\\Class_KhoiND.Services.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\class_khoind.services\\imainservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A9C38D0-FB81-22FE-36F4-C5E34688F568}|Class_KhoiND.Services\\Class_KhoiND.Services.csproj|solutionrelative:class_khoind.services\\imainservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\prn222_class_khoind\\pages\\equipment\\create.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|solutionrelative:prn222_class_khoind\\pages\\equipment\\create.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\prn222_class_khoind\\pages\\equipment\\index.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|solutionrelative:prn222_class_khoind\\pages\\equipment\\index.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30298EF2-DD84-245C-DD05-35829400CBB6}|Class_KhoiND.Repositories\\Class_KhoiND.Repositories.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\class_khoind.repositories\\models\\prn222_pe01_2context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30298EF2-DD84-245C-DD05-35829400CBB6}|Class_KhoiND.Repositories\\Class_KhoiND.Repositories.csproj|solutionrelative:class_khoind.repositories\\models\\prn222_pe01_2context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\prn222_class_khoind\\scaffold.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|solutionrelative:prn222_class_khoind\\scaffold.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\prn222_class_khoind\\programcsfix.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|solutionrelative:prn222_class_khoind\\programcsfix.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\prn222_class_khoind\\crud_templates.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|solutionrelative:prn222_class_khoind\\crud_templates.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A9C38D0-FB81-22FE-36F4-C5E34688F568}|Class_KhoiND.Services\\Class_KhoiND.Services.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\class_khoind.services\\secondaryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A9C38D0-FB81-22FE-36F4-C5E34688F568}|Class_KhoiND.Services\\Class_KhoiND.Services.csproj|solutionrelative:class_khoind.services\\secondaryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30298EF2-DD84-245C-DD05-35829400CBB6}|Class_KhoiND.Repositories\\Class_KhoiND.Repositories.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\class_khoind.repositories\\secondaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30298EF2-DD84-245C-DD05-35829400CBB6}|Class_KhoiND.Repositories\\Class_KhoiND.Repositories.csproj|solutionrelative:class_khoind.repositories\\secondaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30298EF2-DD84-245C-DD05-35829400CBB6}|Class_KhoiND.Repositories\\Class_KhoiND.Repositories.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\class_khoind.repositories\\models\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30298EF2-DD84-245C-DD05-35829400CBB6}|Class_KhoiND.Repositories\\Class_KhoiND.Repositories.csproj|solutionrelative:class_khoind.repositories\\models\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30298EF2-DD84-245C-DD05-35829400CBB6}|Class_KhoiND.Repositories\\Class_KhoiND.Repositories.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\class_khoind.repositories\\models\\lookupgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{30298EF2-DD84-245C-DD05-35829400CBB6}|Class_KhoiND.Repositories\\Class_KhoiND.Repositories.csproj|solutionrelative:class_khoind.repositories\\models\\lookupgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\prn222_class_khoind\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|solutionrelative:prn222_class_khoind\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{30298EF2-DD84-245C-DD05-35829400CBB6}|Class_KhoiND.Repositories\\Class_KhoiND.Repositories.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\class_khoind.repositories\\dbcontextfix.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{30298EF2-DD84-245C-DD05-35829400CBB6}|Class_KhoiND.Repositories\\Class_KhoiND.Repositories.csproj|solutionrelative:class_khoind.repositories\\dbcontextfix.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\prn222_class_khoind\\pages\\equipment\\edit.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|solutionrelative:prn222_class_khoind\\pages\\equipment\\edit.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\prn222_class_khoind\\pages\\equipment\\details.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|solutionrelative:prn222_class_khoind\\pages\\equipment\\details.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\prn222_class_khoind\\pages\\equipment\\delete.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|solutionrelative:prn222_class_khoind\\pages\\equipment\\delete.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|c:\\users\\admin\\desktop\\q2\\prn222_class_khoind\\prn222_class_khoind\\masternote.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{004108E8-DEF2-CD3C-733C-CA711B9E014C}|PRN222_Class_KhoiND\\PRN222_Class_KhoiND.csproj|solutionrelative:prn222_class_khoind\\masternote.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Create.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\Pages\\Equipment\\Create.cshtml.cs",
+              "RelativeDocumentMoniker": "PRN222_Class_KhoiND\\Pages\\Equipment\\Create.cshtml.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\Pages\\Equipment\\Create.cshtml.cs",
+              "RelativeToolTip": "PRN222_Class_KhoiND\\Pages\\Equipment\\Create.cshtml.cs",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAjwEAAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-24T04:35:04.091Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GenericRepository.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\Class_KhoiND.Repositories\\GenericRepository.cs",
+              "RelativeDocumentMoniker": "Class_KhoiND.Repositories\\GenericRepository.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\Class_KhoiND.Repositories\\GenericRepository.cs",
+              "RelativeToolTip": "Class_KhoiND.Repositories\\GenericRepository.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAewCgAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-24T04:26:25.98Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\Pages\\Equipment\\Create.cshtml",
+              "RelativeDocumentMoniker": "PRN222_Class_KhoiND\\Pages\\Equipment\\Create.cshtml",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\Pages\\Equipment\\Create.cshtml",
+              "RelativeToolTip": "PRN222_Class_KhoiND\\Pages\\Equipment\\Create.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-11-24T04:35:00.926Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\Pages\\Equipment\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "PRN222_Class_KhoiND\\Pages\\Equipment\\Index.cshtml.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\Pages\\Equipment\\Index.cshtml.cs",
+              "RelativeToolTip": "PRN222_Class_KhoiND\\Pages\\Equipment\\Index.cshtml.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAwBwAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-24T04:34:21.863Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\Pages\\Equipment\\Index.cshtml",
+              "RelativeDocumentMoniker": "PRN222_Class_KhoiND\\Pages\\Equipment\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\Pages\\Equipment\\Index.cshtml",
+              "RelativeToolTip": "PRN222_Class_KhoiND\\Pages\\Equipment\\Index.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAAcAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-11-24T04:34:11.807Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\Program.cs",
+              "RelativeDocumentMoniker": "PRN222_Class_KhoiND\\Program.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\Program.cs",
+              "RelativeToolTip": "PRN222_Class_KhoiND\\Program.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAoAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-24T00:58:59.871Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MainService.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\Class_KhoiND.Services\\MainService.cs",
+              "RelativeDocumentMoniker": "Class_KhoiND.Services\\MainService.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\Class_KhoiND.Services\\MainService.cs",
+              "RelativeToolTip": "Class_KhoiND.Services\\MainService.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwBoAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-24T04:29:40.548Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MainRepository.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\Class_KhoiND.Repositories\\MainRepository.cs",
+              "RelativeDocumentMoniker": "Class_KhoiND.Repositories\\MainRepository.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\Class_KhoiND.Repositories\\MainRepository.cs",
+              "RelativeToolTip": "Class_KhoiND.Repositories\\MainRepository.cs",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAcwDgAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-24T04:26:52.099Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IMainService.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\Class_KhoiND.Services\\IMainService.cs",
+              "RelativeDocumentMoniker": "Class_KhoiND.Services\\IMainService.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\Class_KhoiND.Services\\IMainService.cs",
+              "RelativeToolTip": "Class_KhoiND.Services\\IMainService.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAIAwwBMAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-24T04:29:27.311Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Create.txt",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\Pages\\Equipment\\Create.txt",
+              "RelativeDocumentMoniker": "PRN222_Class_KhoiND\\Pages\\Equipment\\Create.txt",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\Pages\\Equipment\\Create.txt",
+              "RelativeToolTip": "PRN222_Class_KhoiND\\Pages\\Equipment\\Create.txt",
+              "ViewState": "AgIAACwAAAAAAAAAAAAUwFIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-11-24T04:34:58.557Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "ProgramcsFix.txt",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\ProgramcsFix.txt",
+              "RelativeDocumentMoniker": "PRN222_Class_KhoiND\\ProgramcsFix.txt",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\ProgramcsFix.txt",
+              "RelativeToolTip": "PRN222_Class_KhoiND\\ProgramcsFix.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-11-24T04:32:01.202Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "scaffold.txt",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\scaffold.txt",
+              "RelativeDocumentMoniker": "PRN222_Class_KhoiND\\scaffold.txt",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\scaffold.txt",
+              "RelativeToolTip": "PRN222_Class_KhoiND\\scaffold.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-11-24T04:31:35.103Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "CRUD_templates.md",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\CRUD_templates.md",
+              "RelativeDocumentMoniker": "PRN222_Class_KhoiND\\CRUD_templates.md",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\CRUD_templates.md",
+              "RelativeToolTip": "PRN222_Class_KhoiND\\CRUD_templates.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2026-11-24T00:55:47.289Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Index.txt",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\Pages\\Equipment\\Index.txt",
+              "RelativeDocumentMoniker": "PRN222_Class_KhoiND\\Pages\\Equipment\\Index.txt",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\Pages\\Equipment\\Index.txt",
+              "RelativeToolTip": "PRN222_Class_KhoiND\\Pages\\Equipment\\Index.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-11-24T00:57:06.12Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "PRN222_PE01_2Context.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\Class_KhoiND.Repositories\\Models\\PRN222_PE01_2Context.cs",
+              "RelativeDocumentMoniker": "Class_KhoiND.Repositories\\Models\\PRN222_PE01_2Context.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\Class_KhoiND.Repositories\\Models\\PRN222_PE01_2Context.cs",
+              "RelativeToolTip": "Class_KhoiND.Repositories\\Models\\PRN222_PE01_2Context.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAkwCwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-24T04:25:36.519Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "SecondaryService.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\Class_KhoiND.Services\\SecondaryService.cs",
+              "RelativeDocumentMoniker": "Class_KhoiND.Services\\SecondaryService.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\Class_KhoiND.Services\\SecondaryService.cs",
+              "RelativeToolTip": "Class_KhoiND.Services\\SecondaryService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-24T04:30:34.814Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "SecondaryRepository.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\Class_KhoiND.Repositories\\SecondaryRepository.cs",
+              "RelativeDocumentMoniker": "Class_KhoiND.Repositories\\SecondaryRepository.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\Class_KhoiND.Repositories\\SecondaryRepository.cs",
+              "RelativeToolTip": "Class_KhoiND.Repositories\\SecondaryRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-24T04:28:40.976Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Item.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\Class_KhoiND.Repositories\\Models\\Item.cs",
+              "RelativeDocumentMoniker": "Class_KhoiND.Repositories\\Models\\Item.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\Class_KhoiND.Repositories\\Models\\Item.cs",
+              "RelativeToolTip": "Class_KhoiND.Repositories\\Models\\Item.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-24T04:27:18.184Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "LookupGroup.cs",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\Class_KhoiND.Repositories\\Models\\LookupGroup.cs",
+              "RelativeDocumentMoniker": "Class_KhoiND.Repositories\\Models\\LookupGroup.cs",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\Class_KhoiND.Repositories\\Models\\LookupGroup.cs",
+              "RelativeToolTip": "Class_KhoiND.Repositories\\Models\\LookupGroup.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-24T04:27:44.984Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\appsettings.json",
+              "RelativeDocumentMoniker": "PRN222_Class_KhoiND\\appsettings.json",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\appsettings.json",
+              "RelativeToolTip": "PRN222_Class_KhoiND\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-11-24T04:26:16.048Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "DBContextFix.txt",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\Class_KhoiND.Repositories\\DBContextFix.txt",
+              "RelativeDocumentMoniker": "Class_KhoiND.Repositories\\DBContextFix.txt",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\Class_KhoiND.Repositories\\DBContextFix.txt",
+              "RelativeToolTip": "Class_KhoiND.Repositories\\DBContextFix.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-11-24T04:25:37.23Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Delete.txt",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\Pages\\Equipment\\Delete.txt",
+              "RelativeDocumentMoniker": "PRN222_Class_KhoiND\\Pages\\Equipment\\Delete.txt",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\Pages\\Equipment\\Delete.txt",
+              "RelativeToolTip": "PRN222_Class_KhoiND\\Pages\\Equipment\\Delete.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-11-24T00:58:02.323Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Details.txt",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\Pages\\Equipment\\Details.txt",
+              "RelativeDocumentMoniker": "PRN222_Class_KhoiND\\Pages\\Equipment\\Details.txt",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\Pages\\Equipment\\Details.txt",
+              "RelativeToolTip": "PRN222_Class_KhoiND\\Pages\\Equipment\\Details.txt",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-11-24T00:57:50.836Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Edit.txt",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\Pages\\Equipment\\Edit.txt",
+              "RelativeDocumentMoniker": "PRN222_Class_KhoiND\\Pages\\Equipment\\Edit.txt",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\Pages\\Equipment\\Edit.txt",
+              "RelativeToolTip": "PRN222_Class_KhoiND\\Pages\\Equipment\\Edit.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-11-24T00:58:11.276Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "MasterNote.txt",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\MasterNote.txt",
+              "RelativeDocumentMoniker": "PRN222_Class_KhoiND\\MasterNote.txt",
+              "ToolTip": "C:\\Users\\ADMIN\\Desktop\\Q2\\PRN222_Class_KhoiND\\PRN222_Class_KhoiND\\MasterNote.txt",
+              "RelativeToolTip": "PRN222_Class_KhoiND\\MasterNote.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-11-24T00:58:53.501Z",
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

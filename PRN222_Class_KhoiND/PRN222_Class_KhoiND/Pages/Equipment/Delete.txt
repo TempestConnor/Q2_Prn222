@@ -1,0 +1,20 @@
+        private readonly IMainService _mainService;
+
+        public DeleteModel(IMainService mainService) => _mainService = mainService;
+
+        public Item Entity { get; set; } = default!;
+
+        public async Task<IActionResult> OnGetAsync(int id)
+        {
+            var entity = await _mainService.GetByIdAsync(id);
+            if (entity == null) return NotFound();
+
+            Entity = entity;
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int id)
+        {
+            await _mainService.DeleteAsync(id);
+            return RedirectToPage("Index");
+        }

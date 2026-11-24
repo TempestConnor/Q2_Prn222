@@ -1,0 +1,28 @@
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Repositories\bin\Debug\net8.0\Class_KhoiND.Repositories.deps.json
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Repositories\bin\Debug\net8.0\Class_KhoiND.Repositories.dll
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Repositories\bin\Debug\net8.0\Class_KhoiND.Repositories.pdb
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Repositories\obj\Debug\net8.0\Class_KhoiND.Repositories.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Repositories\obj\Debug\net8.0\Class_KhoiND.Repositories.AssemblyInfoInputs.cache
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Repositories\obj\Debug\net8.0\Class_KhoiND.Repositories.AssemblyInfo.cs
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Repositories\obj\Debug\net8.0\Class_KhoiND.Repositories.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Repositories\obj\Debug\net8.0\Class_KhoiND.Repositories.dll
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Repositories\obj\Debug\net8.0\refint\Class_KhoiND.Repositories.dll
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Repositories\obj\Debug\net8.0\Class_KhoiND.Repositories.pdb
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Repositories\obj\Debug\net8.0\ref\Class_KhoiND.Repositories.dll
+C:\Users\ADMIN\Desktop\PRN222 PE\PRN222_Class_KhoiND\Class_KhoiND.Repositories\obj\Debug\net8.0\Class_Kh.38E97619.Up2Date
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Repositories\obj\Debug\net8.0\Class_KhoiND.Repositories.csproj.AssemblyReference.cache
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Repositories\obj\Debug\net8.0\Class_KhoiND.Repositories.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Repositories\obj\Debug\net8.0\Class_KhoiND.Repositories.AssemblyInfoInputs.cache
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Repositories\obj\Debug\net8.0\Class_KhoiND.Repositories.AssemblyInfo.cs
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Repositories\obj\Debug\net8.0\Class_KhoiND.Repositories.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Repositories\obj\Debug\net8.0\Class_KhoiND.Repositories.dll
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Repositories\obj\Debug\net8.0\refint\Class_KhoiND.Repositories.dll
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Repositories\obj\Debug\net8.0\Class_KhoiND.Repositories.pdb
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Repositories\bin\Debug\net8.0\Class_KhoiND.Repositories.deps.json
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Repositories\bin\Debug\net8.0\Class_KhoiND.Repositories.runtimeconfig.json
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Repositories\bin\Debug\net8.0\Class_KhoiND.Repositories.runtimeconfig.dev.json
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Repositories\bin\Debug\net8.0\Class_KhoiND.Repositories.dll
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Repositories\bin\Debug\net8.0\Class_KhoiND.Repositories.pdb
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Repositories\obj\Debug\net8.0\Class_KhoiND.Repositories.genruntimeconfig.cache
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Repositories\obj\Debug\net8.0\ref\Class_KhoiND.Repositories.dll
+C:\Users\ADMIN\Desktop\Q2\PRN222_Class_KhoiND\Class_KhoiND.Repositories\obj\Debug\net8.0\Class_Kh.38E97619.Up2Date

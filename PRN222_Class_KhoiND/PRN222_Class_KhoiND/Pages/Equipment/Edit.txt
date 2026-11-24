@@ -1,0 +1,94 @@
+        // ---- EDIT THESE: same rules and messages as Create ----
+        private const int NameMaxLength = 50;
+        private const decimal NumMin = 0m;
+        private const decimal NumMax = 1000m;
+        private const int NumMaxDecimals = 2;
+
+        private const string MsgNameRequired = "Name is required";
+        private const string MsgNameTooLong = "Name must be at most 50 characters";
+        private const string MsgGroupInvalid = "Group is required";
+        private const string MsgNumRequired = "Amount is required";
+        private const string MsgNumInvalid = "Amount must be a number";
+        private const string MsgNumRange = "Amount must be between 0 and 1000";
+        private const string MsgNumDecimals = "Amount can have at most 2 decimal places";
+        // -------------------------------------------------------
+
+        private readonly IMainService _mainService;
+        private readonly SecondaryService _secondaryService;
+
+        public EditModel(IMainService mainService, SecondaryService secondaryService)
+        {
+            _mainService = mainService;
+            _secondaryService = secondaryService;
+        }
+
+        [BindProperty] public int MAIN_PK { get; set; }                       // hidden field
+        [BindProperty] public string? MAIN_NAME { get; set; }
+        [BindProperty] public int? MAIN_FK { get; set; }
+        [BindProperty(Name = "MAIN_NUM")] public string? NumText { get; set; }
+
+        public List<LookupGroup> BPs { get; set; } = new();
+
+        public string? Err(string key) =>
+            ModelState.TryGetValue(key, out var entry) ? entry.Errors.FirstOrDefault()?.ErrorMessage : null;
+
+        public async Task<IActionResult> OnGetAsync(int id)
+        {
+            var entity = await _mainService.GetByIdAsync(id);
+            if (entity == null) return NotFound();
+
+            MAIN_PK = entity.MAIN_PK;
+            MAIN_NAME = entity.MAIN_NAME;
+            MAIN_FK = entity.MAIN_FK;
+            NumText = entity.MAIN_NUM.ToString(CultureInfo.InvariantCulture);
+
+            await LoadGroupsAsync();
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            await LoadGroupsAsync();
+
+            var entity = await _mainService.GetByIdAsync(MAIN_PK);
+            if (entity == null) return NotFound();
+
+            var (name, number) = await ValidateAsync();
+            if (!ModelState.IsValid) return Page();
+
+            entity.MAIN_NAME = name!;
+            entity.MAIN_FK = MAIN_FK!.Value;
+            entity.MAIN_NUM = number;
+            entity.MAIN_NAV = null!;            // avoid a stale navigation overriding the new foreign key
+
+            await _mainService.UpdateAsync(entity);
+            return RedirectToPage("Index");
+        }
+
+        private async Task LoadGroupsAsync() => BPs = await _secondaryService.GetAllAsync();
+
+        private async Task<(string? Name, decimal Number)> ValidateAsync()
+        {
+            var name = MAIN_NAME?.Trim();
+            if (string.IsNullOrEmpty(name))
+                ModelState.AddModelError("MAIN_NAME", MsgNameRequired);
+            else if (name.Length > NameMaxLength)
+                ModelState.AddModelError("MAIN_NAME", MsgNameTooLong);
+
+            if (MAIN_FK == null || !await _secondaryService.ExistsAsync(MAIN_FK.Value))
+                ModelState.AddModelError("MAIN_FK", MsgGroupInvalid);
+
+            decimal number = 0;
+            var text = NumText?.Trim();
+            if (string.IsNullOrEmpty(text))
+                ModelState.AddModelError("MAIN_NUM", MsgNumRequired);
+            else if (!decimal.TryParse(text, NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign,
+                         CultureInfo.InvariantCulture, out number))
+                ModelState.AddModelError("MAIN_NUM", MsgNumInvalid);
+            else if (number < NumMin || number > NumMax)
+                ModelState.AddModelError("MAIN_NUM", MsgNumRange);
+            else if (decimal.Round(number, NumMaxDecimals) != number)
+                ModelState.AddModelError("MAIN_NUM", MsgNumDecimals);
+
+            return (name, number);
+        }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create Equipment</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; color: #202428; background: #fff; font: 16px/1.5 Arial, sans-serif; }
+        main { width: min(1120px, calc(100% - 48px)); margin: 32px auto; }
+        h1 { margin: 0 0 24px; font-size: 32px; line-height: 1.25; }
+        a { color: #1655b0; text-underline-offset: 2px; }
+        form { width: min(100%, 520px); }
+        .field { margin-bottom: 22px; }
+        label { display: block; margin-bottom: 6px; }
+        input, select, button { min-height: 40px; border: 1px solid #777; border-radius: 2px; font: inherit; }
+        input, select { display: block; width: 100%; padding: 6px 12px; color: inherit; background: #fff; }
+        .validation { display: block; color: #b42318; }
+        .validation:not(:empty) { margin-top: 6px; }
+        .actions { display: flex; align-items: center; gap: 18px; margin-top: 28px; }
+        button { padding: 6px 20px; color: #111; background: #f3f3f3; cursor: pointer; }
+        button:hover { background: #e7e7e7; }
+        a:focus-visible, input:focus-visible, select:focus-visible, button:focus-visible { outline: 2px solid #1655b0; outline-offset: 3px; }
+        @media (max-width: 600px) {
+            main { width: calc(100% - 32px); margin-top: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Static UI reference for /Equipment/Create. -->
+    <main>
+        <h1>Create Equipment</h1>
+
+        <form method="post" action="/Equipment/Create" novalidate>
+            <div class="field">
+                <label for="txt_name">Name</label>
+                <input id="txt_name" name="Name" type="text" value="" aria-describedby="val_name">
+                <span id="val_name" class="validation" aria-live="polite"></span>
+            </div>
+
+            <div class="field">
+                <label for="sl_group">Group</label>
+                <select id="sl_group" name="GroupId" aria-describedby="val_group">
+                    <option id="opt_group_default" value="" selected>Select group</option>
+                    <option id="opt_group_1" value="1">North</option>
+                    <option id="opt_group_2" value="2">South</option>
+                    <option id="opt_group_3" value="3">West</option>
+                </select>
+                <span id="val_group" class="validation" aria-live="polite"></span>
+            </div>
+
+            <div class="field">
+                <label for="txt_amount">Amount</label>
+                <input id="txt_amount" name="Amount" type="number" step="0.01" min="0" max="1000" value="" aria-describedby="val_amount">
+                <span id="val_amount" class="validation" aria-live="polite"></span>
+            </div>
+
+            <div class="actions">
+                <button id="btn_save" type="submit">Save</button>
+                <a id="btn_back" href="/Equipment/List">Back to List</a>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

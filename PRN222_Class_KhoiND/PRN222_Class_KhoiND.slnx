@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Class_KhoiND.Repositories/Class_KhoiND.Repositories.csproj" />
+  <Project Path="Class_KhoiND.Services/Class_KhoiND.Services.csproj" />
+  <Project Path="PRN222_Class_KhoiND/PRN222_Class_KhoiND.csproj" />
+</Solution>

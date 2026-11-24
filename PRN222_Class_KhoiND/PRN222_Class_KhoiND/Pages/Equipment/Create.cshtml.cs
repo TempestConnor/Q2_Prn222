@@ -1,0 +1,100 @@
+using Class_KhoiND.Repositories.Models;
+using Class_KhoiND.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace PRN222_Class_KhoiND.Pages_Equipment
+{
+    public class CreateModel : PageModel
+    {
+        // ---- EDIT THESE: rules and exact messages from the paper ----
+        private const int NameMaxLength = 50;
+        private const decimal NumMin = 0m;
+        private const decimal NumMax = 1000m;
+        private const int NumMaxDecimals = 2;
+        private static readonly DateOnly DefaultDate = new(2026, 3, 10);
+        private const string DefaultStatus = "Pending";
+
+        private const string MsgNameRequired = "Name is required";
+        private const string MsgNameTooLong = "Name must be at most 50 characters";
+        private const string MsgGroupInvalid = "Group is required";
+        private const string MsgNumRequired = "Amount is required";
+        private const string MsgNumInvalid = "Amount must be a number";
+        private const string MsgNumRange = "Amount must be between 0 and 1000";
+        private const string MsgNumDecimals = "Amount can have at most 2 decimal places";
+        // -------------------------------------------------------------
+
+        private readonly IMainService _mainService;
+        private readonly SecondaryService _secondaryService;
+
+        public CreateModel(IMainService mainService, SecondaryService secondaryService)
+        {
+            _mainService = mainService;
+            _secondaryService = secondaryService;
+        }
+
+        // Property names = the "name" attributes of the exam's form fields.
+        [BindProperty] public string? MAIN_NAME { get; set; }
+        [BindProperty] public int? MAIN_FK { get; set; }
+        [BindProperty(Name = "MAIN_NUM")] public string? NumText { get; set; }   // string so we control the checks
+
+        public List<LookupGroup> BPs { get; set; } = new();
+
+        public string? Err(string key) =>
+            ModelState.TryGetValue(key, out var entry) ? entry.Errors.FirstOrDefault()?.ErrorMessage : null;
+
+        public async Task OnGetAsync() => await LoadGroupsAsync();
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            await LoadGroupsAsync();                       // needed again when the form is redisplayed
+            var (name, number) = await ValidateAsync();
+            if (!ModelState.IsValid) return Page();
+
+            await _mainService.CreateAsync(new Item
+            {
+                Name = name!,
+                ItemId = MAIN_FK!.Value,
+                Amount = number,
+                EventDate = DefaultDate,
+                Status = DefaultStatus
+            });
+
+            return RedirectToPage("Index");
+        }
+
+        private async Task LoadGroupsAsync() => BPs = await _secondaryService.GetAllAsync();
+
+        private async Task<(string? Name, decimal Number)> ValidateAsync()
+        {
+            var name = MAIN_NAME?.Trim();
+            if (string.IsNullOrEmpty(name))
+                ModelState.AddModelError("MAIN_NAME", MsgNameRequired);
+            else if (name.Length > NameMaxLength)
+                ModelState.AddModelError("MAIN_NAME", MsgNameTooLong);
+
+            if (MAIN_FK == null)
+                ModelState.AddModelError("MAIN_FK", MsgGroupInvalid);
+
+            decimal number = 0;
+            var text = NumText?.Trim();
+            if (string.IsNullOrEmpty(text))
+                ModelState.AddModelError("MAIN_NUM", MsgNumRequired);
+            else if (!decimal.TryParse(text, NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign,
+                         CultureInfo.InvariantCulture, out number))
+                ModelState.AddModelError("MAIN_NUM", MsgNumInvalid);
+            else if (number < NumMin || number > NumMax)
+                ModelState.AddModelError("MAIN_NUM", MsgNumRange);
+            else if (decimal.Round(number, NumMaxDecimals) != number)
+                ModelState.AddModelError("MAIN_NUM", MsgNumDecimals);
+
+            return (name, number);
+        }
+    }
+}
